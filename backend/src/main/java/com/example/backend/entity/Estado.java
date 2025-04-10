@@ -1,9 +1,12 @@
 package com.example.backend.entity;
 
 import jakarta.persistence.*;
+import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -19,6 +22,10 @@ public class Estado implements Serializable {
     private Long id;
     private String nome;
     private String sigla;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dataAtualizacao;
 }
