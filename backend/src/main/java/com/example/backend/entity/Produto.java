@@ -10,24 +10,29 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "Cidades")
+@Table(name = "Produtos")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Cidade implements Serializable {
+public class Produto implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCidade;
-    private String nome;
+    private Long idProduto;
+    private String descricaoCurta;
+    private String descricaoDetalhada;
+    private Double valorCusto;
+    private Double valorVenda;
     @ManyToOne
-    @JoinColumn(name = "idEstado")
-    private Estado estado;
+    @JoinColumn(name = "idMarca")
+    private Marca marca;
+    @ManyToOne
+    @JoinColumn(name = "idCategoria")
+    private Categoria categoria;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataAtualizacao;
-
 }

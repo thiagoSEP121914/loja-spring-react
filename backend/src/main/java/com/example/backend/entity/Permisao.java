@@ -1,31 +1,26 @@
 package com.example.backend.entity;
 
 import jakarta.persistence.*;
-import jdk.jfr.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "Estados")
-@AllArgsConstructor
+@Table(name = "Permissões")
 @NoArgsConstructor
+@AllArgsConstructor
 @Data
-public class Estado implements Serializable {
+public class Permisao {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String nome;
-    private String sigla;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long idPermissao;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;
-    @UpdateTimestamp
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataAtualizacao;
 }
