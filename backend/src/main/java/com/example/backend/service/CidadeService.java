@@ -39,7 +39,7 @@ public class CidadeService {
 
     public void delete(Long id) {
         Cidade cidade = findById(id);
-        repository.deleteById(cidade.getId());
+        repository.deleteById(cidade.getIdCidade());
     }
 
     public Cidade update(CidadePutDto cidadePutDto) {
