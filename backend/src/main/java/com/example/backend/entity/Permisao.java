@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
@@ -13,10 +15,11 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class Permisao {
+public class Permisao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPermissao;
+    private String nome;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;

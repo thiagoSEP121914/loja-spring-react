@@ -1,5 +1,6 @@
 package com.example.backend.entity;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,18 +11,16 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "carrinhoCompraProduto")
+@Table(name = "produto_imagens")
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class CarrinhoCompraProduto implements Serializable {
+public class ProdutoImagem implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCarrinhoCompraProduto;
-    private Double valor;
-    private Integer qtd;
-    private String observacao;
+    private Long id;
+    private String name;
     @ManyToOne
     @JoinColumn(name = "idProduto")
     private Produto produto;
@@ -31,4 +30,6 @@ public class CarrinhoCompraProduto implements Serializable {
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataAtualizacao;
+
+
 }

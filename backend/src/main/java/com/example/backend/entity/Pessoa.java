@@ -1,13 +1,12 @@
 package com.example.backend.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Pessoas")
@@ -33,4 +32,15 @@ public class Pessoa implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idCidade")
     private Cidade cidade;
+
+    @OneToMany(mappedBy = "pessoa", orphanRemoval = true, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @Setter(value = AccessLevel.NONE)
+    private List<PermissaoPessoa> permissaoPessoas;
+
+    public void setPermissaoPessoas(List<PermissaoPessoa> permissaoPessoaList) {
+        for (PermissaoPessoa p: permissaoPessoaList) {
+            p.setPessoa(this);
+        }
+        this.permissaoPessoas = permissaoPessoaList;
+    }
 }

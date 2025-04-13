@@ -19,6 +19,7 @@ public class Marca implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idMarca;
+    private String nome;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     private Date dataCriacao;

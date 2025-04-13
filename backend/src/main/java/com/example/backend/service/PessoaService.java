@@ -3,6 +3,7 @@ package com.example.backend.service;
 import com.example.backend.dto.PessoaPostDto;
 import com.example.backend.dto.PessoaPutDto;
 import com.example.backend.entity.Cidade;
+import com.example.backend.entity.PermissaoPessoa;
 import com.example.backend.entity.Pessoa;
 import com.example.backend.repository.CidadeRepository;
 import com.example.backend.repository.PessoaRepository;
@@ -29,12 +30,15 @@ public class PessoaService {
         Pessoa pessoa = new Pessoa();
         Cidade cidade = cidadeRepository.findById(pessoaPostDto.iDcidade())
                 .orElseThrow(() -> new IllegalArgumentException("O estado nao existe!"));
+
+        List<PermissaoPessoa> permissaoPessoa = pessoaPostDto.permissaoPessoa();
         pessoa.setNome(pessoaPostDto.nome());
         pessoa.setCpf(pessoaPostDto.cpf());
         pessoa.setSenha(pessoaPostDto.senha());
         pessoa.setEndereco(pessoaPostDto.endereco());
         pessoa.setCep(pessoaPostDto.cep());
         pessoa.setCidade(cidade);
+        pessoa.setPermissaoPessoas(permissaoPessoa);
         return repository.save(pessoa);
     }
 
@@ -49,6 +53,7 @@ public class PessoaService {
         existingPessoa.setEndereco(pessoaPutDto.endereco());
         existingPessoa.setCep(pessoaPutDto.cep());
         existingPessoa.setCidade(cidade);
+        existingPessoa.setPermissaoPessoas(pessoaPutDto.permissaoPessoas());
         return repository.save(existingPessoa);
     }
     public void deletePessoa (Long id) {
